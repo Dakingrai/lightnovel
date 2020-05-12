@@ -1,4 +1,7 @@
 from django.db import models
+from django.urls import reverse
+from django.template.defaultfilters import slugify
+
 STATUS = (
         ('ONGOING', "Ongoing"),
         ('COMPLETED', "Completed"),
@@ -25,20 +28,29 @@ class Novel(models.Model):
     def __str__(self):
         return self.name
 
-class Chapter(models.Model):
-    class Meta:
-        db_table = "novels_chapter"
-        managed = False
+    def get_absolute_url(self):
+        slug = slugify(f"{self.name}")
+        return reverse("novel", kwargs={"id": self.id, "slug": slug})
 
+
+class Chapter(models.Model):
     id = models.AutoField(primary_key=True, null=False)
-    novel = models.ForeignKey(Novel, on_delete=models.CASCADE)
+    novel = models.ForeignKey(Novel, on_delete=models.CASCADE, null=False)
     name = models.CharField(max_length=1000)
     chapter = models.IntegerField(null=False)
     chapter_content = models.TextField(null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+
+    slug = models.SlugField(unique=True, null=False)
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(f"{self.novel.name}")
+        super(Chapter, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("chapter", kwargs={"slug": self.slug, "chapter":self.chapter})
 
 class Genre(models.Model):
     name = models.CharField(max_length=500, null=False)

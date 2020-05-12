@@ -1,0 +1,30 @@
+{% extends "_layouts/base.html" %}
+ {% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10">
+            <div class="navigation">
+                <a href="{{prev_chapter.get_absolute_url}}"><button class="btn btn-primary"> Prev Chapter</button></a>
+                <a href="{{next_chapter.get_absolute_url}}"><button class="btn btn-primary"> Next Chapter</button></a>
+            </div>
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+
+       <div class="row">
+           <div class="col-md-1">
+           </div>
+           <div class="col-md-10">
+               <h2>{{chapter.name}}</h2><br>
+               <div class="chapter-content">
+               {% autoescape off %}{{chapter.chapter_content}}{% endautoescape %}
+               </div>
+           </div>
+           <div class="col-md-1"></div>
+       </div>
+</div>
+{% endblock %}

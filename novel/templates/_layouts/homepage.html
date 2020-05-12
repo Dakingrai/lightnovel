@@ -1,10 +1,22 @@
 {% extends "_layouts/base.html" %}
-
+ {% load static %}
 {% block content %}
 <div class="container">
-    This is test
-    <a href="#">
-        <button class="btn btn-primary"> Upload Chapters</button>
-    </a>
+    <h1>Featured Novels</h1>
+    <p class="post-meta"><span>by</span> Editors</p>
+    <div class="featured-novels">
+        <div class="row">
+            {% for novel in featured_novels %}
+            <div class="col-md-3 novel-container">
+                <a href="{{novel.get_absolute_url}}">
+                    <img  class = "novel-img" src="/{{novel.picture}}">
+                </a>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    <br><br><br>
+    <h1>Latest Updates</h1>
 </div>
 {% endblock %}

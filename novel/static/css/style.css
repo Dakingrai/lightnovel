@@ -1,0 +1,22 @@
+.novel-text{
+    color: white;
+    background-image: linear-gradient(#FFFEFC, #8C8C8B);
+}
+
+.novel-img{
+    max-width:100%;
+}
+
+.btn-primary{
+    padding: 12 14px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-shadow: #4372c1 0 1px 3px;
+    background-color: #4372c1;
+    border-color: #2e52af;
+}
+
+.navigation{
+    margin-bottom: 25px;
+}

@@ -17,12 +17,12 @@ class NovelAdmin(admin.ModelAdmin):
     )
 
     save_on_top = True
-    list_display = ['id','name', 'created_at', 'updated_at', 'status', 'author']
+    list_display = ['id','name', 'created_at', 'updated_at', 'status', 'featured', 'author']
     list_filter = ['status', 'updated_at']
     date_hierarchy = 'updated_at'
     search_fields = ['name', 'description']
     ordering = ['created_at']
-    list_editable = ['status']
+    list_editable = ['status', 'featured']
     filter_horizontal = ['genre']
 
     inlines = [ChapterInline]

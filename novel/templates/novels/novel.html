@@ -1,0 +1,27 @@
+{% extends "_layouts/base.html" %}
+ {% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="/{{novel.picture}}">
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                {{novel.description}}
+            </div>
+            <br>
+            <div class="row">
+                <h1>Latest Chapters</h1>
+            </div>
+            {% for chapter in descending_chapters %}
+             <div class="row">
+                <a href="{{chapter.get_absolute_url}}"> {{chapter.name}}</a>
+             </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
